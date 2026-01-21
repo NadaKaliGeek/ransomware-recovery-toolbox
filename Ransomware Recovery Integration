@@ -1,0 +1,39 @@
+# Ransomware Recovery Toolbox
+
+## Présentation
+Ce projet est une boîte à outils de cybersécurité permettant de simuler un scénario de ransomware et de mettre en place un système de récupération des fichiers chiffrés.  
+Il combine des programmes en C et des scripts Bash pour proposer une solution complète de détection, de gestion de clés et de restauration des données.
+
+## Partie Intégration (cœur du projet)
+La partie intégration est le module principal du projet.  
+Elle permet de coordonner l’ensemble des composants et d’automatiser tout le processus de récupération.
+
+Elle s’appuie sur plusieurs scripts Bash :
+- `check-archive.sh` : analyse les archives et détecte les fichiers modifiés
+- `init-toolbox.sh` : vérifie et compile les binaires C si nécessaire
+- `restore-toolbox.sh` : vérifie la cohérence du système
+- `restore-archive.sh` : lance le processus complet de restauration
+
+Cette couche d’intégration permet :
+- d’orchestrer les différentes étapes du système
+- d’automatiser les appels aux programmes C
+- de gérer la détection et le stockage des clés
+- d’assurer la restauration des fichiers chiffrés
+
+## Dossier src (partie C)
+Le dossier `src/` contient l’ensemble des programmes en C du projet.  
+Ces programmes implémentent les mécanismes de chiffrement, de déchiffrement et de recherche de clé.
+
+On y retrouve notamment :
+- `cipher.c` : chiffrement des données
+- `decipher.c` : déchiffrement des fichiers
+- `findkey.c` : recherche de la clé
+- `base64_lib.c` / `.h` : gestion du Base64
+- `vignere_lib.c` / `.h` : chiffrement de type Vigenère
+
+Ces modules représentent le moteur cryptographique du système.
+
+## Compilation
+Pour compiler les programmes C :
+```bash
+make -C src
